@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('office_space_benefits', function (Blueprint $table) {
+        Schema::create('api_keys', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('office_space_id')->constrained()->cascadeOnDelete();
+            $table->string('key')->unique();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('office_space_benefits');
+        Schema::dropIfExists('api_keys');
     }
 };
