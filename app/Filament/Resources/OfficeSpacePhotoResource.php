@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\OfficeSpaceBenePhotoResource\Pages;
-use App\Filament\Resources\OfficeSpaceBenePhotoResource\RelationManagers;
-use App\Models\OfficeSpaceBenePhoto;
+use App\Filament\Resources\OfficeSpacePhotoResource\Pages;
+use App\Filament\Resources\OfficeSpacePhotoResource\RelationManagers;
+use App\Models\OfficeSpacePhoto;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class OfficeSpaceBenePhotoResource extends Resource
+class OfficeSpacePhotoResource extends Resource
 {
-    protected static ?string $model = OfficeSpaceBenePhoto::class;
+    protected static ?string $model = OfficeSpacePhoto::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -56,9 +56,9 @@ class OfficeSpaceBenePhotoResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListOfficeSpaceBenePhotos::route('/'),
-            'create' => Pages\CreateOfficeSpaceBenePhoto::route('/create'),
-            'edit' => Pages\EditOfficeSpaceBenePhoto::route('/{record}/edit'),
+            'index' => Pages\ListOfficeSpacePhotos::route('/'),
+            'create' => Pages\CreateOfficeSpacePhoto::route('/create'),
+            'edit' => Pages\EditOfficeSpacePhoto::route('/{record}/edit'),
         ];
     }
 }
