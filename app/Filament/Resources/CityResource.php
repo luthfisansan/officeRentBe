@@ -12,26 +12,43 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class CityResource extends Resource
 {
     protected static ?string $model = City::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-globe-americas';
 
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                //
-            ]);
+    ->schema([
+        Forms\Components\TextInput::make('name')
+            ->helperText('Masukan Nama Dengan tepat')
+            ->required()
+            ->maxLength(255)
+            ->live()
+            ->afterStateUpdated(function ($set, $state) {
+                $set('slug', Str::slug($state));
+            }),
+            
+        Forms\Components\Hidden::make('slug'),
+
+        Forms\Components\FileUpload::make('photo')
+            ->image()
+            ->required()
+        //
+    ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('photo'),
             ])
             ->filters([
                 //
@@ -45,6 +62,7 @@ class CityResource extends Resource
                 ]),
             ]);
     }
+    
 
     public static function getRelations(): array
     {
