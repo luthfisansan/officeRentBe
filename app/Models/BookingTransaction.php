@@ -18,7 +18,8 @@ class BookingTransaction extends Model
         'duration',
         'started_at',
         'ended_at',
-        'is_paid'
+        'is_paid',
+        'booking_trx_id'
     ];
 
     protected $casts = [
